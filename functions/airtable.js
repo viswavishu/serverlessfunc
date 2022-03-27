@@ -12,8 +12,8 @@ exports.handler = async (event, context, cb) => {
         const products = records.map((product) => {
             const { id } = product
             const { name, image, price, description, colors, featured,company,stock,stars,reviews,category,shipping} = product.fields
-            const url = image[0].url
-            return { id, name, url, price, description, colors, featured,company,stock,stars,reviews,category,shipping }
+            // const url = image[0].url
+            return { id, name, image, price, description, colors, featured,company,stock,stars,reviews,category,shipping }
 
         })
         // .join('')    `
