@@ -14,7 +14,7 @@ exports.handler = async (event, context, cb) => {
             const { id } = product
             const { name, images, price, description, colors, featured,company,stock,stars,reviews,category,shipping} = product.fields
             // const image = images[0].image
-            return { id, name, images, price, description, colors, featured,company,stock,stars,reviews,category,shipping }
+            return { id, name, price, images, description, colors, featured,company,stock,stars,reviews,category,shipping }
 
         })
         // .join('')    `
