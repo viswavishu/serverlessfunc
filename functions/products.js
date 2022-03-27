@@ -11,11 +11,15 @@ exports.handler = async(event, context, cb)=>{
             const product = await airtable.retrieve(id)
             if(product.error){
                 return{
+                    
                 statusCode: 404,
                 body: `No product with id: ${id}`,
                 }
             }
             return{
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
                 statusCode: 200,
                 body:JSON.stringify(product),
             }
