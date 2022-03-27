@@ -5,13 +5,22 @@ const airtable = new Airtable({ apiKey: 'keyR3sFraWsqJZuo6' })
     .table('items')
 
 exports.handler = async(event, context, cb)=>{
-    const {id} = event.queryStringParameters
+    //console.log(event)
+    let {id} = event.queryStringParameters
+    let product = await airtable.retrieve(id)
+
+    let {name, images, price, description, colors, featured, company, stock, stars, reviews, category, shipping} = product.fields
+       console.log({id,name, price, images, description, colors, featured, company, stock, stars, reviews, category, shipping}) 
+        
+       
+
     if(id){
+        
         try{
-            const product = await airtable.retrieve(id)
+
+        
             if(product.error){
-                return{
-                    
+                return{    
                 statusCode: 404,
                 body: `No product with id: ${id}`,
                 }
@@ -21,7 +30,8 @@ exports.handler = async(event, context, cb)=>{
                     'Access-Control-Allow-Origin': '*',
                 },
                 statusCode: 200,
-                body:JSON.stringify(product),
+                body:JSON.stringify({id,name, price, images, description, colors, featured, company, stock, stars, reviews, category, shipping}),
+                //body:console.log(product),
             }
         }
         catch(error){
